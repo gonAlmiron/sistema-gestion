@@ -1,12 +1,11 @@
 import server from './services/server';
-import {initDb} from './services/database'
 import Config from './config';
+import logger from './logs/logger';
+import app from './services/server';
 
 const PORT = process.env.PORT || Config.PUERTO
 
-    const init = async () => {
-        await initDb()
-        server.listen(PORT, () => console.log(`Escuchando en el puerto ${PORT} - PID WORKER ${process.pid} `))
-    }
-    
-    init();
+server.listen(PORT, () => logger.info(`Server UP - Escuchando en el puerto ${PORT} - PID WORKER ${process.pid} `))
+
+server.on('error', (err) => logger.error(err))
+

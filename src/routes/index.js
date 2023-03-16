@@ -1,40 +1,27 @@
-import Router from 'express';
-// importar el modelo de cada cosa
-import { ProductoModel } from '../model/producto';
+import {Router} from 'express';
+import AuthRouter from './users.router'
+import NotificationRouter from './notifications.router'
+import ProductsRouter from './products.router'
+import ClientsRouter from './clients.router'
+import ChatRouter from './chat.router'
+
 
 const router = Router();
 
 router.get('/', (req, res) => {
-    res.json({
-        message: "Fetch desde el SERVIDOR / ROUTER"
+     res.json({
+        message: "Petición desde el SERVIDOR -> ROUTER"
     })
 })
 
-router.post('/productos', async (req,res) => {
+router.use('/auth', AuthRouter)
 
-    try {
+router.use('/notifications', NotificationRouter)
 
-        const {nombre, descripcion, precio} = req.body;
+router.use('/products', ProductsRouter)
 
-        const nuevoProducto = await ProductoModel.create({
-            nombre,
-            descripcion,
-            precio
-        })
+router.use('/clients', ClientsRouter)
 
-        res.json({
-            msg: "PRODUCTO AGREGADO CON EXITO",
-            data: nuevoProducto
-        })
-
-
-
-    } catch(err) {
-        res.status(500).json({
-            error: err.message,
-            stack: err.stack,
-          }) 
-    }
-})
+router.use('/chat', ChatRouter)
 
 export default router;
