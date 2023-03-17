@@ -4,7 +4,7 @@ export const IngresoSchema = new Schema({
   producto: { type: String, required: true },
   descripcion: { type: String, required: true },
   estado: { type: String, required: true },
-  fecha: {type: Date, required: true},
+  fecha: {type: String, required: true},
   orden: {type: Number, required: true, autoincrement: true}
 
 },
