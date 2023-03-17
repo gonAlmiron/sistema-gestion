@@ -4,6 +4,7 @@ import NotificationRouter from './notifications.router'
 import ProductsRouter from './products.router'
 import ClientsRouter from './clients.router'
 import ChatRouter from './chat.router'
+import IngresosRouter from './ingresos.router'
 
 
 const router = Router();
@@ -23,5 +24,7 @@ router.use('/products', ProductsRouter)
 router.use('/clients', ClientsRouter)
 
 router.use('/chat', ChatRouter)
+
+router.use('/ingresos', IngresosRouter)
 
 export default router;
